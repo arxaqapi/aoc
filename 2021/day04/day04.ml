@@ -32,19 +32,14 @@ let get_board () =
   a
 
 let get_all_boards () =
-  let counter = ref 0 in
   let try_get_board () = 
     try Some(get_board ())
     with End_of_file -> None in
-  while true do
-    match try_get_board () with
-    | Some(b) -> Printf.printf "Got board ! > "; Printf.printf "%d\n" b.(0).(0); counter := !counter + 1
-    | None -> Printf.printf "End of file reached ! Got %d boards" !counter; exit 1
-  done
+  Array.init 100 (fun i -> match try_get_board () with Some(b)->b | None -> failwith "error" )
+
 
 let () = 
   let d = draws in
   flush () ;
-  get_all_boards ();
-
-  let b = get_board () in print_board b
+  (get_all_boards ()).(99)
+  |> print_board
