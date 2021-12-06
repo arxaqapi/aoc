@@ -12,13 +12,13 @@ let lf =
   |> List.map int_of_string
 
 let bloop lf =
-  let rec trait lf acc =  match lf with
-    | [] -> lf @ acc
-    | hd :: tl -> 
-      if hd = 0 
-        then 6 :: (trait tl @@ 8 :: acc)
-        else hd - 1 :: (trait tl acc)
-  in trait lf [] 
+    let rec trait lf nlf newborns =  match lf with
+      | [] -> (List.rev nlf) @ lf @ newborns
+      | hd :: tl -> 
+        (match hd with
+          | 0 -> (trait tl (6 :: nlf) (8 :: newborns))
+          | n -> (trait tl (n - 1 :: nlf) newborns))
+    in trait lf [] [] 
 
 let rec simulate days lf = match days with
   | 0 -> List.length lf
@@ -28,6 +28,6 @@ let rec simulate days lf = match days with
     simulate (n - 1) nlf
 
 let () =
-  Printf.printf "day06.1: %i\n" @@ simulate 40 lf 
+  Printf.printf "day06.1: %i\n" @@ simulate 70 lf 
 
   
