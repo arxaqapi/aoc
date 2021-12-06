@@ -28,6 +28,8 @@ let rec simulate days lf = match days with
     simulate (n - 1) nlf
 
 let () =
-  Printf.printf "day06.1: %i\n" @@ simulate 70 lf 
+  let total = simulate 80 lf in
+  Printf.printf "day06.1: %i\n" total;
+  assert (total = 391671); 
 
   
