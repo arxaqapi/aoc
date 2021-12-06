@@ -11,12 +11,14 @@ let lf =
   |> String.split_on_char ','
   |> List.map int_of_string
 
-let rec bloop lf = match lf with
-  | [] -> lf
-  | hd :: tl -> 
-    if hd = 0 
-      then 6 :: (bloop tl) @ (8 :: [])
-      else hd - 1 :: (bloop tl)  
+let bloop lf =
+  let rec trait lf acc =  match lf with
+    | [] -> lf @ acc
+    | hd :: tl -> 
+      if hd = 0 
+        then 6 :: (trait tl @@ 8 :: acc)
+        else hd - 1 :: (trait tl acc)
+  in trait lf [] 
 
 let rec simulate days lf = match days with
   | 0 -> List.length lf
