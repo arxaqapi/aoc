@@ -27,7 +27,29 @@ let rec simulate days lf = match days with
     (* print_list nlf; *)
     simulate (n - 1) nlf
 
+let rec fill lf arr = match lf with
+    | [] -> arr
+    | hd :: tl -> (arr.(hd) <- arr.(hd) + 1); fill tl arr
+
+    let step arr =
+  let newborns = arr.(0) in
+  for i = 0 to 7 do
+    if i = 6 
+      then arr.(i) <- newborns + arr.(i + 1)
+      else arr.(i) <- arr.(i + 1)
+  done;
+  arr.(8) <- newborns
+
+let smarter lf days = 
+  let days_left = fill lf (Array.make 9 0) in
+  for i = 0 to days - 1 do
+    step days_left;
+  done;
+  Array.fold_left (+) 0 days_left
+
 let () =
+  smarter lf 80
+  |> Printf.printf "faster day6.2: %i\n";
   let total = simulate 80 lf in
   Printf.printf "day06.1: %i\n" total;
   assert (total = 391671); 
