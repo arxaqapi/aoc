@@ -18,7 +18,7 @@ let bloop lf =
         (match hd with
           | 0 -> (trait tl (6 :: nlf) (8 :: newborns))
           | n -> (trait tl (n - 1 :: nlf) newborns))
-    in trait lf [] [] 
+    in (trait [@tailcall]) lf [] [] 
 
 let rec simulate days lf = match days with
   | 0 -> List.length lf
