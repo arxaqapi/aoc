@@ -48,10 +48,11 @@ let smarter lf days =
   Array.fold_left (+) 0 days_left
 
 let () =
-  smarter lf 80
-  |> Printf.printf "faster day6.2: %i\n";
-  let total = simulate 80 lf in
-  Printf.printf "day06.1: %i\n" total;
-  assert (total = 391671); 
+  let tot_opt = smarter lf 256 in
+  Printf.printf "faster day6.2: %i\n" tot_opt;
+  assert (tot_opt = 1754000560399)
+  (* let total = simulate 80 lf in
+  Printf.printf "day06.1: %i\n" total; *)
+  (* assert (total = 391671);  *)
 
   
