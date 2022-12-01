@@ -49,5 +49,7 @@ let part_two f =
 
 let () = 
   let maxi, maxe = read_all_input filename in
+  (* Elve n°: 254 with 66487 calories*)
   Printf.printf "Solution: Elve n°: %d with %d calories\n" (maxi + 1) maxe;
+  (* 197301 *)
   Printf.printf "Solution Part 2: %d\n" @@ part_two filename
