@@ -60,9 +60,9 @@ let read_n_sum f =
 *)
 
 let process_and_find_common l1 l2 l3 =
-  let mem_1 = Array.make ((2 * 26)) 0 in
-  let mem_2 = Array.make ((2 * 26)) 0 in
-  let mem_3 = Array.make ((2 * 26)) 0 in
+  let mem_1 = Array.make (2 * 26) 0 in
+  let mem_2 = Array.make (2 * 26) 0 in
+  let mem_3 = Array.make (2 * 26) 0 in
   String.iter (fun c -> incr_array_at mem_1 (score_item c - 1)) l1;
   String.iter (fun c -> incr_array_at mem_2 (score_item c - 1)) l2;
   String.iter (fun c -> incr_array_at mem_3 (score_item c - 1)) l3;
