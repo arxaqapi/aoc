@@ -13,4 +13,12 @@ module Array = struct
       for i = 0 to length a - 1 do
         f i (unsafe_get a i) (unsafe_get b i)
       done
+
+  let iter3i f a b c =
+    if length a <> length b && length b <> length c then
+      invalid_arg "Array.iter2: arrays must have the same length"
+    else
+      for i = 0 to length a - 1 do
+        f i (unsafe_get a i) (unsafe_get b i) (unsafe_get c i)
+      done
 end
