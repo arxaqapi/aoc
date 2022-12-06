@@ -121,8 +121,33 @@ let simulate () =
   in
   loop 0
 
+let simulate_part_2 () =
+  let f amount src dest =
+    match amount with
+    | 0 -> () (* failwith "Nothing to move arround" *)
+    | _n ->
+        List.init amount (fun _ -> Stack.pop crate_array.(src - 1))
+        |> List.rev
+        |> List.iter (fun e -> Stack.push e crate_array.(dest - 1))
+  in
+
+  let chan = open_in filename in
+  let rec loop = function
+    | i when i >= 10 -> (
+        match In_channel.input_line chan with
+        | None -> ()
+        | Some line ->
+            Scanf.sscanf line "move %d from %d to %d" (fun amount src dest ->
+                f amount src dest);
+            loop (succ i))
+    | i ->
+        let _aze = In_channel.input_line chan in
+        loop (succ i)
+  in
+  loop 0
+
 let run () =
-  simulate ();
+  simulate_part_2 ();
   let s = ref "" in
   for i = 0 to Array.length crate_array - 1 do
     let c =
@@ -130,8 +155,5 @@ let run () =
     in
     s := String.concat "" [ !s; String.make 1 c ]
   done;
-  Printf.printf "[05] - Part 1: %s\n" !s
-
-(*
-Part 2: if amount > 1, then displace the crates in order and not in a stack-wise manner   
-*)
+  (* Printf.printf "[05] - Part 1: %s\n" !s; *)
+  Printf.printf "[05] - Part 2: %s\n" !s
