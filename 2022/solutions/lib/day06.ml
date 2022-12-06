@@ -21,8 +21,29 @@ let traverse s =
   in
   loop 3 true
 
-let run () = 
-  (match In_channel.input_line (open_in filename) with 
-  | Some s -> traverse s
-  | None -> failwith "Empty file")
-  |> Printf.printf "[06] - Part 1: %d\n"
+let gen_traverse s size =
+  let get = String.get s in
+  let rec loop i c =
+    match (i, c) with
+    | i, _ when i = String.length s -> i
+    | _, false -> i
+    | i, _ ->
+        (* get a list of the last (size) elements *)
+        let part = List.init size (fun ii -> get (i - ii)) in
+        let count_l = List.map (fun e -> count_l part e) part in
+        if List.fold_left ( + ) 0 count_l = size then loop (succ i) false
+        else loop (succ i) true
+  in
+  loop (size - 1) true
+
+let run () =
+  let s =
+    match In_channel.input_line (open_in filename) with
+    | Some s -> s
+    | None -> failwith "Empty file"
+  in
+
+  (* 1109 *)
+  Printf.printf "[06] - Part 1: %d\n" @@ traverse s;
+  (* 3965 *)
+  Printf.printf "[06] - Part 2: %d\n" @@ gen_traverse s 14
