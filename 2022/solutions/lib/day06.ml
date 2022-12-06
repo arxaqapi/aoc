@@ -25,4 +25,4 @@ let run () =
   (match In_channel.input_line (open_in filename) with 
   | Some s -> traverse s
   | None -> failwith "Empty file")
-  |> Printf.printf "[05] - Part 1: %d\n"
+  |> Printf.printf "[06] - Part 1: %d\n"
