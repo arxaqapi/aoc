@@ -131,3 +131,7 @@ let run () =
     s := String.concat "" [ !s; String.make 1 c ]
   done;
   Printf.printf "[05] - Part 1: %s\n" !s
+
+(*
+Part 2: if amount > 1, then displace the crates in order and not in a stack-wise manner   
+*)
