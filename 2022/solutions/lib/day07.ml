@@ -1,6 +1,5 @@
 let filename = "data/07_input"
 
-
 (*
 sum of dir where size is bigger than => 10_000   
 count nested files also
@@ -11,4 +10,3 @@ $ ls => list of files:
 $ cd .. => go back
 $ cd azyge => cd into dir
 *)
-
