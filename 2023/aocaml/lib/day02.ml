@@ -98,8 +98,6 @@ let solve_part_1 input =
         0 games
   | Error e -> failwith e
 
-(* prod of the min of all red, green blue pairs *)
-(* pour chaque ligne, je veux le min rgb *)
 let solve_part_2 input =
   parse_string ~consume:Prefix p_all_lines input |> function
   | Ok games ->

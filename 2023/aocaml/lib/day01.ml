@@ -1,8 +1,4 @@
 let input_data = "data/01_input.txt"
-(*
-   - each line is a calibration value to retrieve
-   - the value is the first encountered digit concatenated to the last digit
-*)
 
 let is_number c =
   let ascii_of_c = Char.code c in
