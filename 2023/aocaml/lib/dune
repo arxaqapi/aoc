@@ -1,0 +1,3 @@
+(library
+ (name aocaml)
+ (libraries angstrom))

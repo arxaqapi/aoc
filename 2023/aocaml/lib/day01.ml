@@ -1,4 +1,4 @@
-let input_data = "input_01.txt"
+let input_data = "data/01_input.txt"
 (*
    - each line is a calibration value to retrieve
    - the value is the first encountered digit concatenated to the last digit
@@ -14,7 +14,7 @@ let get_number_from_char c = int_of_char c - int_of_char '0'
 let rec search s i incr =
   match s.[i] with
   | c when is_number c -> get_number_from_char c
-  | c -> search s (i + incr) incr
+  | _c -> search s (i + incr) incr
 
 let retrieve_calibration_value s =
   (search s 0 1, search s (String.length s - 1) (-1))
@@ -70,13 +70,13 @@ let string_to_calibration_v s =
   let i_list =
     String.to_seq s |> List.of_seq
     |> List.fold_left2
-        (fun b i c ->
-          match is_number c with
-          | true -> get_number_from_char c :: b
-          | false -> (
-              match check_all_patterns s i with None -> b | Some x -> x :: b))
-        []
-        (List.init (String.length s) (fun i -> i))
+         (fun b i c ->
+           match is_number c with
+           | true -> get_number_from_char c :: b
+           | false -> (
+               match check_all_patterns s i with None -> b | Some x -> x :: b))
+         []
+         (List.init (String.length s) (fun i -> i))
   in
   (10 * (i_list |> List.rev |> List.hd)) + List.hd i_list
 
@@ -88,8 +88,7 @@ let part_2 f =
   in
   loop_input (open_in f) 0
 
-let () =
+let solve () =
   (* 55386 , 54824 *)
-  Printf.printf "[01] part 1: %d | part 2: %d\n"
-    (part_1_content input_data)
-    (part_2 input_data)
+  Printf.printf "[01] - Part 1: %d\n" @@ part_1_content input_data;
+  Printf.printf "[01] - Part 2: %d\n" @@ part_2 input_data
