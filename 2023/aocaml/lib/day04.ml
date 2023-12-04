@@ -22,14 +22,12 @@ let parse_input_line line =
   in
   { id = card_num; magic_numbers; numbers }
 
+module Ints = Set.Make (Int)
+
 (* [count_n_winning number magic_number] returns all [magic_numbers] in [numbers] *)
 let get_winning_n magic_numbers numbers =
-  List.filter
-    (fun n ->
-      match List.find_opt (( = ) n) magic_numbers with
-      | Some _ -> true
-      | None -> false)
-    numbers
+  Ints.inter (Ints.of_list magic_numbers) (Ints.of_list numbers)
+  |> Ints.to_seq |> List.of_seq
 
 let count_points winning_numbers =
   int_of_float (2. ** (float_of_int (List.length winning_numbers) -. 1.))
