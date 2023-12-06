@@ -60,4 +60,4 @@ let solve () =
   (* 22193 *)
   Printf.printf "[04] - Part 1: %d\n" @@ solve_part_1 input;
   (* 5625994 *)
-  Printf.printf "[04] - Part 2: %d\n" @@ solve_part_2 input
+  Printf.printf "[04] - Part 2: %d\n\n" @@ solve_part_2 input

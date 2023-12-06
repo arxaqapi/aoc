@@ -109,4 +109,4 @@ let solve_part_2 input =
 let solve () =
   let input = get_data () in
   Printf.printf "[02] - Part 1: %d\n" @@ solve_part_1 input;
-  Printf.printf "[02] - Part 2: %d\n" @@ solve_part_2 input
+  Printf.printf "[02] - Part 2: %d\n\n" @@ solve_part_2 input

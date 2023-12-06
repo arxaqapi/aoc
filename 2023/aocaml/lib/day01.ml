@@ -87,4 +87,4 @@ let part_2 f =
 let solve () =
   (* 55386 , 54824 *)
   Printf.printf "[01] - Part 1: %d\n" @@ part_1_content input_data;
-  Printf.printf "[01] - Part 2: %d\n" @@ part_2 input_data
+  Printf.printf "[01] - Part 2: %d\n\n" @@ part_2 input_data
