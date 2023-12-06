@@ -39,7 +39,7 @@ let find_dest_in_map (mappings : map) input =
   let rec loop mappings =
     match mappings with
     | { start; length; dest_offset } :: _
-      when input >= start && input <= start + length ->
+      when input >= start && input < start + length ->
         input + dest_offset
     | _ :: tl -> loop tl
     | [] -> input
@@ -73,8 +73,6 @@ let reduce_map_range all_mappings (start, len) =
   done;
   !min_loc
 
-(* let seed_range_list (start, length) = List.init length (fun i -> start + i) *)
-
 let solve_part_2 input =
   let all_mappings, _seeds = parse input in
   let test =
@@ -91,24 +89,13 @@ let solve_part_2 input =
       (3895155702, 111080695);
     ]
   in
-
-  (* Iterative solution w. stack explosion *)
-  (* List.fold_left
-     (fun acc e ->
-       min acc
-         (List.map (seed_to_location all_mappings) (seed_range_list e)
-         |> List.fold_left min Int.max_int))
-     Int.max_int test *)
-
   (* Recursive solution w. handcrafted fold *)
   List.map
     (fold_left_map_range min Int.max_int (seed_to_location all_mappings))
     test
+  (* for loop solution with index *)
+  (* List.map (reduce_map_range all_mappings) test *)
   |> List.fold_left min Int.max_int
-
-(* for loop solution with index *)
-(* List.map (reduce_map_range all_mappings) test
-   |> List.fold_left min Int.max_int *)
 
 let solve () =
   let input = Io.load_as_list "data/05_input.txt" in
