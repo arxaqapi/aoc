@@ -6,6 +6,9 @@ e: b
 b:
 	@dune build
 
+t:
+	dune test
+
 f:
 	dune fmt
 
