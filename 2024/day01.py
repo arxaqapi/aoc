@@ -36,6 +36,10 @@ def solve_part_2(l: list[int], r: list[int]):
     return total
 
 
+def solve_p_2_small(l: list[int], r: list[int]):
+    return sum(x * r.count(x) for x in l)
+
+
 if __name__ == "__main__":
     # 1151792
     res_1 = solve_part_1(*load())
@@ -44,3 +48,4 @@ if __name__ == "__main__":
 
     print(res_1)
     print(res_2)
+    print(solve_p_2_small(*load()))
