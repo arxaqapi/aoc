@@ -23,6 +23,10 @@ def solve_part_1(l: list[int], r: list[int]):
     return total
 
 
+def solve_p_1_small(l: list[int], r: list[int]):
+    return sum(abs(a - b) for a, b in zip(sorted(l), sorted(r)))
+
+
 def solve_part_2(l: list[int], r: list[int]):
     count = defaultdict(int)
     # count r list elements
@@ -47,5 +51,6 @@ if __name__ == "__main__":
     res_2 = solve_part_2(*load())
 
     print(res_1)
+    print(solve_p_1_small(*load()))
     print(res_2)
     print(solve_p_2_small(*load()))
