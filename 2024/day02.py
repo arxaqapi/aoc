@@ -50,5 +50,7 @@ def solve_part_2(reports: list[list[int]]):
 
 
 if __name__ == "__main__":
+    # 631
     print(solve_part_1(load()))
+    # 654
     print(solve_part_2(load()))
