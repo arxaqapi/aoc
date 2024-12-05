@@ -85,7 +85,9 @@ def solve_part_2(orders, updates, log: bool = False):
 
 
 if __name__ == "__main__":
+    # 5588
     print(solve_part_1(*load()))
+    # 5331
     print(solve_part_2(*load()))
 
     # print(solve_part_1(*load(Path("data/05.test.txt")), log=True))
